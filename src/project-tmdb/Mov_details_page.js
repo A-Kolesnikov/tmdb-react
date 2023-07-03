@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 function Mov_details_page(props) {
 
     const paramHook = useParams()
-    const titleID = paramHook.id
+    const titleID = paramHook.id    //Why not paramHook.titleID ?!
     //const { titleID } = useParams() //not working
 
     const [titleMov, setTitleMov] = useState('')
@@ -24,7 +24,7 @@ function Mov_details_page(props) {
             try {
                 let response = await fetch(addr, options)
                 let decode = await response.json()
-                await new Promise(resolve => setTimeout(resolve, 1000))
+                await new Promise(resolve => setTimeout(resolve, 300))
                 console.log(decode)
                 setTitleMov(decode)
             } catch (err) {
@@ -42,7 +42,7 @@ function Mov_details_page(props) {
             <img className='col-2' src={imgPath} alt='Title image' ></img>
             <div className='col-6'>
                 <h2>{unitName}</h2>
-                {titleMov.release_date}
+                Release date: {titleMov.release_date}
             </div>
         </div>
     )
