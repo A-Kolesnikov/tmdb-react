@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Mov_unit from './Mov_unit';
+import Mov_unit_vertical from './Mov_unit_vertical';
 
 function Main_page() {
 
@@ -34,11 +34,9 @@ function Main_page() {
             <h2>Top Rated Movies</h2>
             <div className='d-flex p-3 text-center' style={{ overflowX: "auto" }}>
                 <div className='d-flex flex-row'>
-                    {bestMov.map((element) => (<Mov_unit key={element.id} title={element} />))}
+                    {bestMov.map((element) => (<Mov_unit_vertical key={element.id} title={element} />))}
                 </div>
             </div>
-
-            {/*<Mov_details_page titleID={713704}/>*/}
         </div>
     )
 }

@@ -9,7 +9,7 @@ function Search_line(props){
 
     return(
         <div>
-            <button onClick={(searchValue)=>props.handleSearch(searchValue)}>Search</button>
+            <button onClick={()=>props.handleSearch(searchValue)}>Search</button>
             <input type="text" placeholder="Input title name" onChange={(e)=>{handleChange(e)}}></input>
         </div>
     )
