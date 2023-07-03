@@ -33,7 +33,7 @@ function App(){
                 <Route path="/tvShows/:id" element={<TV_details_page />} />
                 <Route path='*' element={<Not_found />} />
             </Routes>
-            <Footer className="foot" />
+            <Footer className="footer"/>
         </div>
     )
 }

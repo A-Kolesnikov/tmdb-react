@@ -2,6 +2,38 @@
   text-align: center;
 }
 
-.foot{
-  margin-top: auto;
+*{
+  box-sizing: border-box;
+}
+
+.container{
+  min-height: 100vh;
+}
+
+div[class^="col-"] {
+  margin: 10px;
+  padding: 20px;
+}
+
+.header,
+.footer{
+  padding: 20px;
+  background-color:lightsteelblue
+}
+
+.footer{
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  padding: 10px 0;
+  text-align: center;
+}
+
+.navBar{
+
+  align-items: center;
+  height:60px;
+  background-color: lightgray;
 }

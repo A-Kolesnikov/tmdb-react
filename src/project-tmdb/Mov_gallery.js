@@ -29,21 +29,22 @@ function Mov_gallery() {
         setFilter(queryElement)
     }
 
-    const handleSearch = (titleName) =>{
-        console.log(titleName)
+    const handleSearch = (request) => {
+        console.log(request)
     }
 
     /*fetch(url, options)
     .then(res => res.json())
     .then(json => console.log(json))
     .catch(err => console.error('error' + err))*/ //Default request from TMDB
-    
+
     async function getInfo(addr) {
         try {
             let response = await fetch(addr, options)
             let decode = await response.json()
             await new Promise(resolve => setTimeout(resolve, 500)) //server delay imitation
             setTitlesMov(decode.results)
+            console.log(decode.results)
         } catch (err) {
             console.error('error' + err)
         }
@@ -51,21 +52,27 @@ function Mov_gallery() {
     useEffect(() => {
         getInfo(urlMov)
     }, []);
-    
+
     useEffect(() => {
-        if (filter === ''){
+        if (filter === '') {
             getInfo(urlMov)
-        }else{
+        } else {
             getInfo(urlMovFiltered)
         }
     }, [filter]
     )
 
-    return ! titlesMov.length ? <h1>Loading</h1> : (
+    return !titlesMov.length ? <h1>Loading</h1> : (
         <div className='container'>
+            <div className='row'>
+                <div className='col-7'>
+                    <Search_line handleSearch={handleSearch} />
+                </div>
+                <div className='col-4'>
+                    <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
+                </div>
+            </div>
             <h1>Movies Gallery</h1>
-            <Filter handleChangeFilter={handleChangeFilter} filter={filter}/>
-            <Search_line handleSearch={handleSearch}/>
             {titlesMov.map((element) => (<Mov_unit key={element.id} title={element} />))}
         </div>
     )

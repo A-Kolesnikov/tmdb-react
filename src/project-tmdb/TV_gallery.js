@@ -61,9 +61,15 @@ useEffect(() => {
 
     return !titlesTV.length ? <h1>Loading</h1> : (
         <div className='container'>
+            <div className='row'>
+                <div className='col-7'>
+                    <Search_line handleSearch={handleSearch} />
+                </div>
+                <div className='col-4'>
+                    <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
+                </div>
+            </div>
             <h1>TV-series gallery</h1>
-            <Filter handleChangeFilter={handleChangeFilter} filter={filter}/>
-            <Search_line handleSearch={handleSearch}/>
             {titlesTV.map((element) => (<TV_unit key={element.id} title={element} />))}
         </div>
     )

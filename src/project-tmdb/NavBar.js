@@ -1,18 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
+import { faTv } from '@fortawesome/free-solid-svg-icons';
+
 function NavBar() {
 
     return (
-        <div className='row'>
-            <div className='col-1'>
-                <Link to='/' >Main page</Link>
+        <div className='navBar d-flex'>
+            <div className='col-2'>
+                <Link to='/' ><FontAwesomeIcon icon={faHouse} size="xl" /> Main page</Link>
             </div>
-            <div className='col-1'>
-                <Link to='/movies'>Movies</Link>
+            <div className='col-2'>
+                <Link to='/movies'><FontAwesomeIcon icon={faVideo} size="xl" /> Movies</Link>
             </div>
-            <div className='col-1'>
-                <Link to='/tvShows'>TV-Shows</Link>
+            <div className='col-2'>
+                <Link to='/tvShows'><FontAwesomeIcon icon={faTv} size="xl" /> TV-Shows</Link>
             </div>
             
         </div>
