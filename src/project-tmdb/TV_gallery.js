@@ -9,14 +9,13 @@ function TV_gallery(){
 
     const [titlesTV, setTitlesTV] = useState([])
     const [filter, setFilter] = useState()
-
-    const navigate = useNavigate()
+    const [searchRequest, setSearchRequest] = useState('')
 
     const fetch = require('node-fetch')
     const urlTV = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc';
     const urlTVFiltered = `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${filter}`//`https://api.themoviedb.org/3/discover/tv?include_genres=${filter}`
+    const urlTVSearch = `https://api.themoviedb.org/3/search/tv?query=${searchRequest}&include_adult=false&language=en-US&page=1`
     
-
     const options = {
         method: 'GET',
         headers: {
@@ -30,8 +29,8 @@ function TV_gallery(){
         setFilter(queryElement)
     }
 
-    const handleSearch = (titleName) =>{
-        console.log(titleName)
+    const handleSearch = (request) => {
+        setSearchRequest(request)
     }
     
     async function getInfo(addr) {
@@ -49,7 +48,7 @@ function TV_gallery(){
 
     getInfo(urlTV)
 }, []);
-    
+
 useEffect(() => {
     if (filter === ''){
         getInfo(urlTV)
@@ -57,6 +56,15 @@ useEffect(() => {
         getInfo(urlTVFiltered)
     }
 }, [filter]
+)
+
+useEffect(() => {
+    if (searchRequest ===''){
+        getInfo(urlTV)
+    } else{
+        getInfo(urlTVSearch)
+    }
+}, [searchRequest]
 )
 
     return !titlesTV.length ? <h1>Loading</h1> : (

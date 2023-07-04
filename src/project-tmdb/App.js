@@ -15,25 +15,27 @@ import NavBar from './NavBar'
 import Footer from './Footer'
 
 
-function App(){
+function App() {
 
-    return(
-        
-        <div className='container'>
-            <header>
-            <Header />
-            <NavBar />
-
+    return (
+        <div className='container-fluid page d-flex flex-column'>
+            <header className='row'>
+                <Header />
             </header>
-            <Routes>
-                <Route path="/" element={<Main_page />} />
-                <Route path="/movies" element={<Mov_gallery/>} />
-                <Route path="/movies/:id" element={<Mov_details_page />} />
-                <Route path="/tvShows" element={<TV_gallery />} />
-                <Route path="/tvShows/:id" element={<TV_details_page />} />
-                <Route path='*' element={<Not_found />} />
-            </Routes>
-            <Footer className="footer"/>
+            <main className='row'>
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<Main_page />} />
+                    <Route path="/movies" element={<Mov_gallery />} />
+                    <Route path="/movies/:id" element={<Mov_details_page />} />
+                    <Route path="/tvShows" element={<TV_gallery />} />
+                    <Route path="/tvShows/:id" element={<TV_details_page />} />
+                    <Route path='*' element={<Not_found />} />
+                </Routes>
+            </main>
+            <footer className='row'>
+                <Footer />
+            </footer>
         </div>
     )
 }

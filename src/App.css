@@ -1,14 +1,19 @@
-.App {
+/*.App {
   text-align: center;
-}
+}*/
 
 *{
   box-sizing: border-box;
 }
 
-.container{
+html, body{
+  height: 100%
+}
+
+.page{
   min-height: 100vh;
 }
+
 
 div[class^="col-"] {
   margin: 10px;
@@ -21,18 +26,13 @@ div[class^="col-"] {
   background-color:lightsteelblue
 }
 
+
 .footer{
-
-  left: 0;
-  bottom: 0;
-  width: 100%;
-
-  padding: 10px 0;
   text-align: center;
+  margin-top: auto;
 }
 
 .navBar{
-
   align-items: center;
   height:60px;
   background-color: lightgray;
