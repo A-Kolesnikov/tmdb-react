@@ -9,7 +9,7 @@ import { faTv } from '@fortawesome/free-solid-svg-icons';
 function NavBar() {
 
     return (
-        <div className='navBar d-flex'>
+        <div className='navBar d-flex sticky-top'>
             <div className='col-2'>
                 <Link to='/' ><FontAwesomeIcon icon={faHouse} size="xl" /> Main page</Link>
             </div>

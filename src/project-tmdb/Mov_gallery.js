@@ -9,13 +9,12 @@ function Mov_gallery() {
 
     const [titlesMov, setTitlesMov] = useState([])
     const [filter, setFilter] = useState('')
-
-    const navigate = useNavigate()
+    const [searchRequest, setSearchRequest] = useState('')
 
     const fetch = require('node-fetch')
     const urlMov = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
     const urlMovFiltered = `https://api.themoviedb.org/3/discover/movie?with_genres=${filter}`
-    /*`https://api.themoviedb.org/3/discover/movie?api_key=8d00a0f1d7f28d7191b91fd7387d1a7d&with_genres=${filter}`*/ //default filter request
+    const urlMovSearch = `https://api.themoviedb.org/3/search/movie?query=${searchRequest}&include_adult=false&language=en-US&page=1`
     const options = {
         method: 'GET',
         headers: {
@@ -30,7 +29,7 @@ function Mov_gallery() {
     }
 
     const handleSearch = (request) => {
-        console.log(request)
+        setSearchRequest(request)
     }
 
     /*fetch(url, options)
@@ -62,8 +61,19 @@ function Mov_gallery() {
     }, [filter]
     )
 
+    useEffect(() => {
+        if (searchRequest === '') {
+            getInfo(urlMov)
+        } else {
+            getInfo(urlMovSearch)
+        }
+    }, [searchRequest]
+    )
+
+
     return !titlesMov.length ? <h1>Loading</h1> : (
-        <div className='container'>
+        <div className='row'>
+            <div className='col-m'>
             <div className='row'>
                 <div className='col-7'>
                     <Search_line handleSearch={handleSearch} />
@@ -72,9 +82,12 @@ function Mov_gallery() {
                     <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
                 </div>
             </div>
-            <h1>Movies Gallery</h1>
+            <div className='row'>
+            <h1 className=' text-center'>Movies Gallery</h1>
             {titlesMov.map((element) => (<Mov_unit key={element.id} title={element} />))}
-        </div>
+            </div>
+            </div>
+        </div >
     )
 }
 
