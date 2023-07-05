@@ -27,7 +27,7 @@ function Mov_details_page() {
                     <div className='col-6'>
                         <h2>{unitName}</h2>
                         <p><i>{titleMov.tagline}</i></p>
-                        <p><a href={titleMov.homepage} target="_blank">Title homepage</a></p>
+                        {titleMov.homepage ? (<p><a href={titleMov.homepage} target="_blank">Title homepage</a></p>) : <></>}
                         <p><b>Release date:</b> {titleMov.release_date}</p>
                         <p><b>Overview:</b> {titleMov.overview}</p>
                     </div>

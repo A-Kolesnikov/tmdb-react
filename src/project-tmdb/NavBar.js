@@ -19,7 +19,7 @@ function NavBar() {
                         <Link to='/movies'><FontAwesomeIcon icon={faVideo} size="xl" /> Movies</Link>
                     </div>
                     <div className='col-2'>
-                        <Link to='/tvShows'><FontAwesomeIcon icon={faTv} size="xl" /> TV-Shows</Link>
+                        <Link to='/tv-shows'><FontAwesomeIcon icon={faTv} size="xl" /> TV-Shows</Link>
                     </div>
                 </div>
             </div>
