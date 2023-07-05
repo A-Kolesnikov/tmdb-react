@@ -34,15 +34,19 @@ function Mov_details_page(props) {
         getInfo(url)
     }, []);
 
-        const unitName = titleMov.name ? titleMov.name : titleMov.title
-        const imgPath = `https://image.tmdb.org/t/p/w500${titleMov.poster_path}`
-        console.log('Its really'+titleID)
-    return ! titleMov ? <h1>Loading</h1> : (
+    const unitName = titleMov.name ? titleMov.name : titleMov.title
+    const imgPath = `https://image.tmdb.org/t/p/w500${titleMov.poster_path}`
+    return !titleMov ? <h1>Loading</h1> : (
         <div className='row'>
             <img className='col-2' src={imgPath} alt='Title image' ></img>
             <div className='col-6'>
                 <h2>{unitName}</h2>
-                Release date: {titleMov.release_date}
+                <p><i>{titleMov.tagline}</i></p>
+                <p><a href={titleMov.homepage} target="_blank">Title homepage</a></p>
+                <p><b>Release date:</b> {titleMov.release_date}</p>
+                <p><b>Overview:</b> {titleMov.overview}</p>
+                <div>
+                </div>
             </div>
         </div>
     )

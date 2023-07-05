@@ -3,16 +3,20 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-function Search_line(props){
+function Search_line(props) {
     const [searchValue, setSearchValue] = useState('')
-    const handleChange = (e)=>{
+    const handleChange = (e) => {
         setSearchValue(e.target.value)
     }
 
-    return(
-        <div>
-            <button onClick={()=>props.handleSearch(searchValue)}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-            <input type="text" placeholder="Search title by name" onChange={(e)=>{handleChange(e)}}></input>
+    return (
+        <div className="row">
+            <div className="input-group">
+                <div className="form-outline">
+                    <input type="text" placeholder="Search title by name" className="form-control" size={50} onChange={(e) => { handleChange(e) }}></input>
+                </div>
+                <button className="btn btn-primary" onClick={() => props.handleSearch(searchValue)}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
+            </div>
         </div>
     )
 }

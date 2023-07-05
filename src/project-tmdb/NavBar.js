@@ -9,17 +9,20 @@ import { faTv } from '@fortawesome/free-solid-svg-icons';
 function NavBar() {
 
     return (
-        <div className='navBar d-flex sticky-top'>
-            <div className='col-2'>
-                <Link to='/' ><FontAwesomeIcon icon={faHouse} size="xl" /> Main page</Link>
+        <div className='navBar d-flex justify-content-center sticky-top'>
+            <div className='col-10'>
+                <div className='row'>
+                    <div className='col-2'>
+                        <Link to='/' ><FontAwesomeIcon icon={faHouse} size="xl" /> Main page</Link>
+                    </div>
+                    <div className='col-2'>
+                        <Link to='/movies'><FontAwesomeIcon icon={faVideo} size="xl" /> Movies</Link>
+                    </div>
+                    <div className='col-2'>
+                        <Link to='/tvShows'><FontAwesomeIcon icon={faTv} size="xl" /> TV-Shows</Link>
+                    </div>
+                </div>
             </div>
-            <div className='col-2'>
-                <Link to='/movies'><FontAwesomeIcon icon={faVideo} size="xl" /> Movies</Link>
-            </div>
-            <div className='col-2'>
-                <Link to='/tvShows'><FontAwesomeIcon icon={faTv} size="xl" /> TV-Shows</Link>
-            </div>
-            
         </div>
     )
 }

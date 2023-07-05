@@ -71,20 +71,28 @@ function Mov_gallery() {
     )
 
     return !titlesMov.length ? <h1>Loading</h1> : (
-        <div className='row'>
-            <div className='col-m'>
-            <div className='row'>
-                <div className='col-7'>
-                    <Search_line handleSearch={handleSearch} />
+        <div className='row d-flex justify-content-center'>
+            <div className='col-10'>
+                <div className='row  border'>
+                    <div className='col'>
+                        <h1 className='row justify-content-center'>Movies Gallery</h1>
+                        <div className='row'>
+                            <div className='col-8 d-flex align-items-end'>
+                                <div>
+                                <Search_line handleSearch={handleSearch} />
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div className='col-4'>
-                    <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
+                <div className='row'>
+
+                    {titlesMov.map((element) => (<Mov_unit key={element.id} title={element} />))}
                 </div>
-            </div>
-            <div className='row'>
-            <h1 className=' text-center'>Movies Gallery</h1>
-            {titlesMov.map((element) => (<Mov_unit key={element.id} title={element} />))}
-            </div>
             </div>
         </div >
     )

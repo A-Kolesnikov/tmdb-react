@@ -16,7 +16,7 @@ html, body{
 
 
 div[class^="col-"] {
-  padding: 20px;
+  padding: 10px;
 }
 
 .header,
@@ -33,6 +33,7 @@ div[class^="col-"] {
 
 .navBar{
   align-items: center;
-  height:60px;
+  min-height:40px;
+  padding:2px;
   background-color: lightgray;
 }
