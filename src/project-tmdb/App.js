@@ -10,7 +10,7 @@ import Mov_details_page from './Mov_details_page'
 import TV_details_page from './TV_details_page'
 import Not_found from './Not_found'
 import Header from './Header'
-import Search_line from './Search_line'
+import Search_line from './Search_bar'
 import NavBar from './NavBar'
 import Footer from './Footer'
 

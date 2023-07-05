@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-function Search_line(props) {
+function Search_bar(props) {
     const [searchValue, setSearchValue] = useState('')
     const handleChange = (e) => {
         setSearchValue(e.target.value)
@@ -20,4 +20,4 @@ function Search_line(props) {
         </div>
     )
 }
-export default Search_line
+export default Search_bar

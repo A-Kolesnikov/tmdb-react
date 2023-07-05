@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+
+import Filter from './Filter';
+import Search_bar from './Search_bar';
+import {downloadGallery} from './getInfo';
 
 import Mov_unit from './Mov_unit';
-import Filter from './Filter';
-import Search_line from './Search_line';
 
 function Mov_gallery() {
-
     const [titlesMov, setTitlesMov] = useState([])
     const [filter, setFilter] = useState('')
     const [searchRequest, setSearchRequest] = useState('')
 
-    const fetch = require('node-fetch')
     const urlMov = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
     const urlMovFiltered = `https://api.themoviedb.org/3/discover/movie?with_genres=${filter}`
     const urlMovSearch = `https://api.themoviedb.org/3/search/movie?query=${searchRequest}&include_adult=false&language=en-US&page=1`
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDAwYTBmMWQ3ZjI4ZDcxOTFiOTFmZDczODdkMWE3ZCIsInN1YiI6IjY0OWFmYjFkN2UzNDgzMDBhY2MzOTdmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.egwmn-oqHF-VC6_ifTiRFKpiiBvO0slCgTM8cotn3CY'
-        }
-    };
 
     const handleChangeFilter = (e) => {
         const queryElement = e.target.value
@@ -32,40 +24,24 @@ function Mov_gallery() {
         setSearchRequest(request)
     }
 
-    /*fetch(url, options)
-    .then(res => res.json())
-    .then(json => console.log(json))
-    .catch(err => console.error('error' + err))*/ //Default request from TMDB
-
-    async function getInfo(addr) {
-        try {
-            let response = await fetch(addr, options)
-            let decode = await response.json()
-            await new Promise(resolve => setTimeout(resolve, 500)) //server delay imitation
-            setTitlesMov(decode.results)
-            console.log(decode.results)
-        } catch (err) {
-            console.error('error' + err)
-        }
-    }
-    useEffect(() => {
-        getInfo(urlMov)
+    useEffect(() => {       //fetching default content
+        downloadGallery(urlMov, setTitlesMov)
     }, []);
 
-    useEffect(() => {
+    useEffect(() => {       //fetching filtered content
         if (filter === '') {
-            getInfo(urlMov)
+            downloadGallery(urlMov, setTitlesMov)
         } else {
-            getInfo(urlMovFiltered)
+            downloadGallery(urlMovFiltered, setTitlesMov)
         }
     }, [filter]
     )
 
-    useEffect(() => {
+    useEffect(() => {       //fetching searched content
         if (searchRequest === '') {
-            getInfo(urlMov)
+            downloadGallery(urlMov, setTitlesMov)
         } else {
-            getInfo(urlMovSearch)
+            downloadGallery(urlMovSearch, setTitlesMov)
         }
     }, [searchRequest]
     )
@@ -79,7 +55,7 @@ function Mov_gallery() {
                         <div className='row'>
                             <div className='col-8 d-flex align-items-end'>
                                 <div>
-                                <Search_line handleSearch={handleSearch} />
+                                <Search_bar handleSearch={handleSearch} />
                                 </div>
                             </div>
                             <div className='col-4'>
@@ -87,10 +63,8 @@ function Mov_gallery() {
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div className='row'>
-
                     {titlesMov.map((element) => (<Mov_unit key={element.id} title={element} />))}
                 </div>
             </div>
