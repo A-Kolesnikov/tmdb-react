@@ -70,7 +70,6 @@ function Mov_gallery() {
     }, [searchRequest]
     )
 
-
     return !titlesMov.length ? <h1>Loading</h1> : (
         <div className='row'>
             <div className='col-m'>

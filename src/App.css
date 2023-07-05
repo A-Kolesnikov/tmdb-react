@@ -16,7 +16,6 @@ html, body{
 
 
 div[class^="col-"] {
-  margin: 10px;
   padding: 20px;
 }
 
