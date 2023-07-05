@@ -1,28 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+
+import Filter from './Filter';
+import Search_bar from './Search_bar';
+import { downloadGallery } from './getInfo';
 
 import TV_unit from './TV_unit';
-import Filter from './Filter';
-import Search_line from './Search_line';
 
 function TV_gallery(){
 
     const [titlesTV, setTitlesTV] = useState([])
-    const [filter, setFilter] = useState()
+    const [filter, setFilter] = useState('')
     const [searchRequest, setSearchRequest] = useState('')
 
-    const fetch = require('node-fetch')
     const urlTV = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc';
     const urlTVFiltered = `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${filter}`//`https://api.themoviedb.org/3/discover/tv?include_genres=${filter}`
     const urlTVSearch = `https://api.themoviedb.org/3/search/tv?query=${searchRequest}&include_adult=false&language=en-US&page=1`
-    
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDAwYTBmMWQ3ZjI4ZDcxOTFiOTFmZDczODdkMWE3ZCIsInN1YiI6IjY0OWFmYjFkN2UzNDgzMDBhY2MzOTdmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.egwmn-oqHF-VC6_ifTiRFKpiiBvO0slCgTM8cotn3CY'
-        }
-    };
 
     const handleChangeFilter = (e) => {
         const queryElement = e.target.value
@@ -32,54 +24,53 @@ function TV_gallery(){
     const handleSearch = (request) => {
         setSearchRequest(request)
     }
-    
-    async function getInfo(addr) {
-        try {
-            let response = await fetch(addr, options)
-            let decode = await response.json()
-            await new Promise(resolve => setTimeout(resolve, 500)) //server delay imitation
-            setTitlesTV(decode.results)
-        } catch (err) {
-            console.error('error' + err)
-        }
-    }
 
-    useEffect( () =>{
-
-    getInfo(urlTV)
+    useEffect( () =>{       //fetching default content
+        downloadGallery(urlTV, setTitlesTV)
 }, []);
 
-useEffect(() => {
+useEffect(() => {       //fetching filtered content
     if (filter === ''){
-        getInfo(urlTV)
+        downloadGallery(urlTV, setTitlesTV)
     }else{
-        getInfo(urlTVFiltered)
+        downloadGallery(urlTVFiltered, setTitlesTV)
     }
 }, [filter]
 )
 
-useEffect(() => {
+useEffect(() => {       //fetching searched content
     if (searchRequest ===''){
-        getInfo(urlTV)
+        downloadGallery(urlTV, setTitlesTV)
     } else{
-        getInfo(urlTVSearch)
+        downloadGallery(urlTVSearch, setTitlesTV)
     }
 }, [searchRequest]
 )
 
     return !titlesTV.length ? <h1>Loading</h1> : (
-        <div className='container'>
-            <div className='row'>
-                <div className='col-7'>
-                    <Search_line handleSearch={handleSearch} />
-                </div>
-                <div className='col-4'>
-                    <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
+        <div className='row d-flex justify-content-center'>
+        <div className='col-10'>
+            <div className='row  border'>
+                <div className='col'>
+                    <h1 className='row justify-content-center'>Movies Gallery</h1>
+                    <div className='row'>
+                        <div className='col-8 d-flex align-items-end'>
+                            <div>
+                            <Search_bar handleSearch={handleSearch} />
+                            </div>
+                        </div>
+                        <div className='col-4'>
+                            <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
+                        </div>
+                    </div>
                 </div>
             </div>
-            <h1>TV-series gallery</h1>
-            {titlesTV.map((element) => (<TV_unit key={element.id} title={element} />))}
+            <div className='row'>
+                {titlesTV.map((element) => (<TV_unit key={element.id} title={element} />))}
+            </div>
         </div>
+    </div >
+        
     )
 }
 
