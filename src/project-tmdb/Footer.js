@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
 
     return (
-        <footer className="d-flex justify-content-center container-fluid footer">
+        <footer className="d-flex justify-content-center container-fluid">
             <section >
                 <div className="row">
                     <div>&copy; Brightcode 2023 A.Kolesnikov</div>

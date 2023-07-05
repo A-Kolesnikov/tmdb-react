@@ -12,7 +12,7 @@ function Search_line(props){
     return(
         <div>
             <button onClick={()=>props.handleSearch(searchValue)}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-            <input type="text" placeholder="Input title name" onChange={(e)=>{handleChange(e)}}></input>
+            <input type="text" placeholder="Search title by name" onChange={(e)=>{handleChange(e)}}></input>
         </div>
     )
 }

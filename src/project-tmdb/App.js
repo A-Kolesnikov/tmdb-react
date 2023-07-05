@@ -22,6 +22,7 @@ function App() {
             <header className='row'>
                 <Header />
             </header>
+
             <main className='row'>
                 <NavBar />
                 <Routes>
@@ -33,7 +34,8 @@ function App() {
                     <Route path='*' element={<Not_found />} />
                 </Routes>
             </main>
-            <footer className='row'>
+
+            <footer className='row footer'>
                 <Footer />
             </footer>
         </div>
