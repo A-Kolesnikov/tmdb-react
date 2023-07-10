@@ -13,13 +13,13 @@ function NavBar() {
             <div className='col-10'>
                 <div className='row'>
                     <div className='col-2'>
-                        <Link to='/' ><FontAwesomeIcon icon={faHouse} size="xl" /> Main page</Link>
+                        <Link to='/' className='navLink' ><FontAwesomeIcon icon={faHouse} size="xl" /> Main page</Link>
                     </div>
                     <div className='col-2'>
-                        <Link to='/movies'><FontAwesomeIcon icon={faVideo} size="xl" /> Movies</Link>
+                        <Link to='/movies' className='navLink'><FontAwesomeIcon icon={faVideo} size="xl" /> Movies</Link>
                     </div>
-                    <div className='col-2'>
-                        <Link to='/tv-shows'><FontAwesomeIcon icon={faTv} size="xl" /> TV-Shows</Link>
+                    <div className='col-2 textLink'>
+                        <Link to='/tv-shows' className='navLink'><FontAwesomeIcon icon={faTv} size="xl" /> TV-Shows</Link>
                     </div>
                 </div>
             </div>
