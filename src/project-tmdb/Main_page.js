@@ -1,32 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Mov_unit_vertical from './Mov_unit_vertical';
 
+import {downloadGallery} from './getInfo';
+
 function Main_page() {
 
     const [bestMov, setBestMov] = useState([])
 
-    const fetch = require('node-fetch')
     const urlBestMov = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDAwYTBmMWQ3ZjI4ZDcxOTFiOTFmZDczODdkMWE3ZCIsInN1YiI6IjY0OWFmYjFkN2UzNDgzMDBhY2MzOTdmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.egwmn-oqHF-VC6_ifTiRFKpiiBvO0slCgTM8cotn3CY'
-        }
-    };
 
-    async function getInfo(addr) {
-        try {
-            let response = await fetch(addr, options)
-            let decode = await response.json()
-            await new Promise(resolve => setTimeout(resolve, 500)) //server delay imitation
-            setBestMov(decode.results)
-        } catch (err) {
-            console.error('error' + err)
-        }
-    }
     useEffect(() => {
-        getInfo(urlBestMov)
+        downloadGallery(urlBestMov, setBestMov)
     }, []);
 
     return !bestMov.length ? <h1>Loading</h1> : (
